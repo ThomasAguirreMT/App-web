@@ -3,12 +3,9 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-require_once("persistencia/conexion.php");
-require_once("persistencia/clienteDAO.php");
-require_once("logica/cliente.php");
-require_once("persistencia/estadoDAO.php");
-require_once("persistencia/planDAO.php");
+
 ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
   .navbar-brand img {
@@ -36,9 +33,8 @@ require_once("persistencia/planDAO.php");
 
     <!-- Logo / Nombre del sistema -->
     <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="dashboard.php">
-      <img src="img/LogoWeb.png"
-        alt="Logo Empresa"
-        style="height:40px;">
+      <img src="/web/img/LogoWeb.png" alt="Logo Empresa" style="height:40px;">
+
     </a>
 
 
@@ -83,8 +79,8 @@ require_once("persistencia/planDAO.php");
 
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="/web/presentacion/Cliente/crearInstalacion.php">
-                Activos
+              <a class="dropdown-item" href="/web/presentacion/Cliente/ConsultarCortes.php">
+                Cortes
               </a>
             </li>
 
@@ -142,7 +138,3 @@ require_once("persistencia/planDAO.php");
     </div>
   </div>
 </nav>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

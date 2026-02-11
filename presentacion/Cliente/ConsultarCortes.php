@@ -1,15 +1,22 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once("../../logica/cliente.php");
+
 
 $cliente = new Cliente();
 $clientes = $cliente->consultarCortes();
-include("presentacion/MenuAdministrador.php");
+require_once(__DIR__ . "/../menuAdministrador.php");
+
+
+
+
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 

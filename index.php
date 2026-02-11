@@ -47,13 +47,14 @@ $ciudades = $ciudadObj->consultar();
 
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
 
     <div class="table-responsive p-3">
         <table id="clientes" class="table table-striped table-hover align-middle">
-            <thead class="table-dark">
+            <thead >
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
@@ -119,7 +120,7 @@ $ciudades = $ciudadObj->consultar();
 
                 <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title">
-                        <i class="fa fa-user-plus"></i> Creación del Cliente
+                        <i class="fa fa-user-plus"></i> Creación del Clientee
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>

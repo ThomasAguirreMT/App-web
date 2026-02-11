@@ -34,7 +34,7 @@ class ClienteDAO
     public function consultarCortes()
     {
         return "
-        SELECT 
+       SELECT 
         
             c.id_cliente,
             c.nombre_1,
@@ -43,18 +43,22 @@ class ClienteDAO
             c.apellido_2,
             c.identificacion,
             ec.id_estado_cliente,
+            CONCAT(p.cantidad,'M ',p.obs) AS PLAN1, 
             p.valor,
             c.dia_corte,
             c.direccion,
+            c.telefono_1,
+            c.telefono_2,
             CONCAT(ba.red, ba.prefijo, '0', c.num_cliente) AS codigo
+
 
         FROM cliente c
         JOIN barrio ba ON ba.id_barrio = c.id_barrio
         JOIN estado_cliente ec ON ec.id_estado_cliente = c.id_estado_cliente
         JOIN plan p ON p.id_plan = c.id_plan
-    
+
     WHERE c.id_estado_cliente IN (2,3)
-            ";
+             ";
     }
 
 

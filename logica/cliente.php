@@ -310,6 +310,39 @@ public function getApellido2() {
         return $clientes;
     }
 
+    public function consultarCortes()
+    {
+        $conexion = new Conexion();
+        $dao = new ClienteDAO();
+
+        $conexion->abrir();
+        $conexion->ejecutar($dao->consultarCortes());
+
+        $clientes = [];
+        while (($fila = $conexion->registro()) != null) {
+            $clientes[] = new Cliente(
+                $fila[0],
+                $fila[1],
+                $fila[2],
+                $fila[3],
+                $fila[4],
+                $fila[5],
+                $fila[6],
+                $fila[7],
+                $fila[8],
+                $fila[9],
+                $fila[10],
+                $fila[11],
+                $fila[12],
+                $fila[13]
+            );
+        }
+
+        $conexion->cerrar();
+        return $clientes;
+    }
+
+
     public function cambiarEstado($estado)
     {
         $conexion = new Conexion();
