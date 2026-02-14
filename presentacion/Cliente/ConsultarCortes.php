@@ -156,7 +156,7 @@ require_once(__DIR__ . "/../menuAdministrador.php");
             let estado = boton.data("estado");
 
             $.ajax({
-                url: "/WEB/ajax/cambiarestadocliente.php",
+                url: "../../ajax/cambiarestadocliente.php",
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -168,12 +168,10 @@ require_once(__DIR__ . "/../menuAdministrador.php");
 
                             let filaNode = fila.node();
 
-                            // 🔄 Estado
                             $(filaNode).find("td:eq(4)").html(
                                 `<div class="text-center">${response.icono}</div>`
                             );
 
-                            // 🔄 Acción
                             let nuevoBoton = (estado == 1) ?
                                 `<a href="#" class="cambiarEstado" data-id="${id}" data-estado="2" title="Deshabilitar">
                 <i class="fa-regular fa-circle-xmark text-danger fs-3"></i>

@@ -2,9 +2,9 @@
 session_start();
 
 
-require_once(__DIR__ . "/../persistencia/Conexion.php");
-require_once(__DIR__ . "/../persistencia/UsuarioDAO.php");
-require_once(__DIR__ . "/../logica/Usuario.php");
+require_once(__DIR__ . "/../persistencia/conexion.php");
+require_once(__DIR__ . "/../persistencia/usuarioDAO.php");
+require_once(__DIR__ . "/../logica/usuario.php");
 
 
 $usuario = $_POST['usuario'] ?? '';

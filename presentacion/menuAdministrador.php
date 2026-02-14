@@ -79,7 +79,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="/web/presentacion/Cliente/ConsultarCortes.php">
+              <a class="dropdown-item" href="presentacion\Cliente\ConsultarCortes.php">
                 Cortes
               </a>
             </li>
