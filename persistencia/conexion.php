@@ -1,25 +1,44 @@
 <?php
 
-class Conexion {
+class Conexion
+{
 
     private $conexion;
     private $resultado;
 
-    public function abrir() {
+    public function abrir()
+    {
+
         $this->conexion = new mysqli(
             "localhost",
             "root",
             "",
-            "webmasterr"
+            "Webmasteer",
+            
         );
 
-        if ($this->conexion->connect_error) {
-            die("Error de conexión: " . $this->conexion->connect_error);
-        }
+        /*
 
+    public function abrir() {
+
+      $this->conexion = new mysqli(
+    "localhost",
+    "thomas",
+    "1022998351",
+    "WebProv",
+    3306
+);
+*/
+
+
+        if ($this->conexion->connect_error) {
+            die("Error de conexión MySQL: " . $this->conexion->connect_error);
+        }
     }
 
-    public function ejecutar($sql) {
+    public function ejecutar($sql)
+    {
+
         if ($this->conexion === null) {
             throw new Exception("La conexión NO está abierta");
         }
@@ -33,15 +52,18 @@ class Conexion {
         return $this->resultado;
     }
 
-    public function registro() {
+    public function registro()
+    {
         return $this->resultado->fetch_row();
     }
 
-    public function filas() {
+    public function filas()
+    {
         return $this->resultado->num_rows;
     }
 
-    public function cerrar() {
+    public function cerrar()
+    {
         if ($this->conexion !== null) {
             $this->conexion->close();
         }

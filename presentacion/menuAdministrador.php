@@ -33,7 +33,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- Logo / Nombre del sistema -->
     <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="dashboard.php">
-      <img src="/web/img/LogoWeb.png" alt="Logo Empresa" style="height:40px;">
+      <img src="/img/LogoWeb.png" alt="Logo Empresa" style="height:40px;">
 
     </a>
 
@@ -79,7 +79,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
           <ul class="dropdown-menu">
             <li>
-              <a class="dropdown-item" href="/web/presentacion/Cliente/ConsultarCortes.php">
+              <a class="dropdown-item" href="presentacion\Cliente\ConsultarCortes.php">
                 Cortes
               </a>
             </li>

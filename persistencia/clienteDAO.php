@@ -57,7 +57,7 @@ class ClienteDAO
         JOIN estado_cliente ec ON ec.id_estado_cliente = c.id_estado_cliente
         JOIN plan p ON p.id_plan = c.id_plan
 
-    WHERE c.id_estado_cliente IN (2,3)
+    WHERE c.id_estado_cliente IN (2)
              ";
     }
 
