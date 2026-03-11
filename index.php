@@ -14,6 +14,8 @@ require_once("logica/cliente.php");
 require_once("logica/plan.php");
 require_once("logica/ciudad.php");
 require_once("logica/barrio.php");
+require_once("logica/estado.php");
+
 
 include("presentacion/menuAdministrador.php");
 
@@ -30,6 +32,9 @@ $ciudades = $ciudadObj->consultar();
 
 $barrioObj = new Barrio();
 $barrios = $barrioObj->consultar();
+
+$estadoObj = new Estado();
+$estado = $estadoObj->consultar();
 
 ?>
 
@@ -217,10 +222,16 @@ $barrios = $barrioObj->consultar();
                             <div class="col-md-4">
                                 <label>Estado</label>
 
+                           
                                 <select name="id_estado_cliente" id="edit_estado" class="form-control">
 
-                                    <option value="1">Activo</option>
-                                    <option value="2">Suspendido</option>
+                                    <?php foreach ($estado as $e) { ?>
+
+                                        <option value="<?= $e[0] ?>">
+                                            <?= $e[1] ?>
+                                        </option>
+
+                                    <?php } ?>
 
                                 </select>
 
