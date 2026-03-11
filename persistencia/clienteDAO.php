@@ -3,34 +3,38 @@ require_once(__DIR__ . "/conexion.php");
 class ClienteDAO
 {
     public function consultar()
-    {
-        return "
-       SELECT 
-        
-            c.id_cliente,
-            c.nombre_1,
-            c.nombre_2,
-            c.apellido_1,
-            c.apellido_2,
-            c.identificacion,
-            ec.id_estado_cliente,
-            CONCAT(p.cantidad,'M ',p.obs) AS PLAN1, 
-            p.valor,
-            c.dia_corte,
-            c.direccion,
-            c.telefono_1,
-            c.telefono_2,
-            CONCAT(ba.red, ba.prefijo, '0', c.num_cliente) AS codigo
+{
+    return "
+    SELECT 
+        c.id_cliente,
+        c.id_plan,
+        c.id_barrio,
+        c.nombre_1,
+        c.nombre_2,
+        c.apellido_1,
+        c.apellido_2,
+        c.identificacion,
+        ec.id_estado_cliente,
+        CONCAT(p.cantidad,'M ',p.obs) AS PLAN1,
+        p.valor,
+        c.dia_corte,
+        c.direccion,
+        c.telefono_1,
+        c.telefono_2,
+        CONCAT(ba.red, ba.prefijo, '0', c.num_cliente) AS codigo
 
+    FROM cliente c
+    JOIN barrio ba ON ba.id_barrio = c.id_barrio
+    JOIN estado_cliente ec ON ec.id_estado_cliente = c.id_estado_cliente
+    JOIN plan p ON p.id_plan = c.id_plan
 
-        FROM cliente c
-        JOIN barrio ba ON ba.id_barrio = c.id_barrio
-        JOIN estado_cliente ec ON ec.id_estado_cliente = c.id_estado_cliente
-        JOIN plan p ON p.id_plan = c.id_plan
+    WHERE c.id_estado_cliente IN
+    (1,2,3,4,5,6,7,8,9,10,
+     11,12,13,14,15,16,17,18,19,20,
+     21,22,23,24,25,26,27,28,29,30)
+    ";
+}    
 
-    WHERE c.id_estado_cliente IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)
-             ";
-    }
     public function consultarCortes()
     {
         return "
@@ -138,5 +142,25 @@ public function insertar($c)
 }
 
 
+
+public function actualizar($c)
+{
+    return "
+    UPDATE cliente SET
+        nombre_1 = '{$c->getNombre1()}',
+        nombre_2 = '{$c->getNombre2()}',
+        apellido_1 = '{$c->getApellido1()}',
+        apellido_2 = '{$c->getApellido2()}',
+        telefono_1 = '{$c->getTelefono1()}',
+        telefono_2 = '{$c->getTelefono2()}',
+        direccion = '{$c->getDireccion()}',
+        correo = '{$c->getCorreo()}',
+        id_plan = {$c->getIdPlan()},
+        id_estado_cliente = {$c->getIdEstadoCliente()},
+        dia_corte = {$c->getDia_corte()},
+        id_barrio = {$c->getIdBarrio()}
+    WHERE id_cliente = {$c->getId_Cliente()}
+    ";
+}
 
 }

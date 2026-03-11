@@ -1,8 +1,9 @@
 <?php
 
 require_once("persistencia/conexion.php");
-require_once("persistencia/ClienteDAO.php");
-class barrio
+require_once("persistencia/barrioDAO.php");
+
+class Barrio
 {
 
     private $id_barrio;
@@ -18,23 +19,27 @@ class barrio
         $this->red = $red;
     }
 
-    public function getId_barrio()
+    public function getIdBarrio()
     {
         return $this->id_barrio;
     }
+
     public function getBarrio()
     {
         return $this->barrio;
     }
+
     public function getPrefijo()
     {
         return $this->prefijo;
     }
+
     public function getRed()
     {
         return $this->red;
     }
-    public function setId_barrio($id_barrio)
+
+    public function setIdBarrio($id_barrio)
     {
         $this->id_barrio = $id_barrio;
     }
@@ -43,22 +48,61 @@ class barrio
     {
         $this->barrio = $barrio;
     }
+
     public function setPrefijo($prefijo)
     {
         $this->prefijo = $prefijo;
     }
+
     public function setRed($red)
     {
         $this->red = $red;
     }
-    
-    public function consultarPorCiudad($id_ciudad) {
-        
-    $conexion = new Conexion();
-            $conexion->abrir();
-    return $conexion->ejecutar(
-        "SELECT id_barrio, barrio FROM barrio WHERE id_ciudad = $id_ciudad ORDER BY barrio"
-    );
-}
+
+    /* ================= CONSULTAR TODOS ================= */
+
+    public function consultar()
+    {
+        $conexion = new Conexion();
+        $dao = new barrioDAO();
+
+        $conexion->abrir();
+        $conexion->ejecutar($dao->consultarBarrios());
+
+        $barrios = [];
+
+        while(($fila = $conexion->registro()) != null){
+            $barrios[] = $fila;
+        }
+
+        $conexion->cerrar();
+
+        return $barrios;
+    }
+
+    /* ================= CONSULTAR POR CIUDAD ================= */
+
+    public function consultarPorCiudad($id_ciudad)
+    {
+        $conexion = new Conexion();
+
+        $conexion->abrir();
+
+        $conexion->ejecutar(
+            "SELECT id_barrio, barrio FROM barrio 
+             WHERE id_ciudad = $id_ciudad 
+             ORDER BY barrio"
+        );
+
+        $barrios = [];
+
+        while(($fila = $conexion->registro()) != null){
+            $barrios[] = $fila;
+        }
+
+        $conexion->cerrar();
+
+        return $barrios;
+    }
 
 }
