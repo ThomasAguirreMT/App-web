@@ -136,10 +136,11 @@ $barrios = $barrioObj->consultar();
                                 data-estado="<?= $c->getIdEstadoCliente() ?>"
                                 data-plan="<?= $c->getIdPlan() ?>"
                                 data-barrio="<?= $c->getIdBarrio() ?>"
+                                data-num="<?= $c->getNumCliente() ?>"
+                                data-codigo="<?= $c->getCodigo() ?>"
                                 data-bs-toggle="modal"
                                 data-bs-target="#modalEditarCliente">
                                 <i class="fa-solid fa-pen text-primary"></i>
-
                             </a>
 
                         </td>
@@ -258,6 +259,16 @@ $barrios = $barrioObj->consultar();
                                 </select>
 
                             </div>
+                            <div class="col-md-6">
+                                <label>Código actual</label>
+                                <input type="text" id="codigo_completo" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Número cliente</label>
+                                <input type="number" name="num_cliente" id="edit_num_cliente" class="form-control">
+                            </div>
+
+
 
                         </div>
 
@@ -315,6 +326,9 @@ $barrios = $barrioObj->consultar();
             $("#edit_estado").val($(this).data("estado"));
             $("#edit_plan").val($(this).data("plan"));
             $("#edit_barrio").val($(this).data("barrio"));
+
+            $("#edit_num_cliente").val($(this).data("num"));
+            $("#codigo_completo").val($(this).data("codigo"));
 
         });
 

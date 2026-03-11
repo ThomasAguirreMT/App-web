@@ -3,8 +3,7 @@
 require_once(__DIR__ . "/../persistencia/conexion.php");
 require_once(__DIR__ . "/../persistencia/clienteDAO.php");
 
-class Cliente
-{
+class Cliente {
 
     private $id_cliente;
     private $nombre_1;
@@ -21,17 +20,12 @@ class Cliente
     private $telefono_2;
     private $codigo;
 
-    private $id_ciudad;
-    private $id_barrio;
-    private $red;
     private $num_cliente;
-    private $id_tipo_identificacion;
-    private $exp_doc;
-    private $correo;
-    private $fecha_instalacion;
 
     private $id_plan;
-    private $id_usuario;
+    private $id_barrio;
+
+    private $correo;
 
     public function __construct(
         $id_cliente = 0,
@@ -48,8 +42,7 @@ class Cliente
         $telefono_1 = "",
         $telefono_2 = "",
         $codigo = ""
-    )
-    {
+    ){
 
         $this->id_cliente = $id_cliente;
         $this->nombre_1 = $nombre_1;
@@ -85,16 +78,16 @@ class Cliente
     public function getTelefono2(){ return $this->telefono_2; }
     public function getCodigo(){ return $this->codigo; }
 
+    public function getNumCliente(){ return $this->num_cliente; }
+
     public function getIdPlan(){ return $this->id_plan; }
     public function getIdBarrio(){ return $this->id_barrio; }
-    public function getCorreo(){
-    return $this->correo;
-}
 
+    public function getCorreo(){ return $this->correo; }
 
     /* ================= SETTERS ================= */
 
-    public function setIdCliente($id){ $this->id_cliente = $id; }
+    public function setIdCliente($v){ $this->id_cliente = $v; }
     public function setNombre1($v){ $this->nombre_1 = $v; }
     public function setNombre2($v){ $this->nombre_2 = $v; }
     public function setApellido1($v){ $this->apellido_1 = $v; }
@@ -105,16 +98,16 @@ class Cliente
     public function setDia_corte($v){ $this->dia_corte = $v; }
     public function setIdEstadoCliente($v){ $this->id_estado_cliente = $v; }
 
-    public function setIdPlan($id){ $this->id_plan = $id; }
-    public function setIdBarrio($id){ $this->id_barrio = $id; }
+    public function setNumCliente($v){ $this->num_cliente = $v; }
 
-public function setCorreo($correo){
-    $this->correo = $correo;
-}
+    public function setIdPlan($v){ $this->id_plan = $v; }
+    public function setIdBarrio($v){ $this->id_barrio = $v; }
+
+    public function setCorreo($v){ $this->correo = $v; }
+
     /* ================= CONSULTAR CLIENTES ================= */
 
-    public function consultarActivos()
-    {
+    public function consultarActivos(){
 
         $conexion = new Conexion();
         $dao = new ClienteDAO();
@@ -129,24 +122,23 @@ public function setCorreo($correo){
             $c = new Cliente(
 
                 $fila[0], // id_cliente
-                $fila[3], // nombre
-                $fila[4], // nombre2
-                $fila[5], // apellido
-                $fila[6], // apellido2
-                $fila[7], // identificacion
-                $fila[8], // estado
-                $fila[9], // plan
-                $fila[10], // valor
-                $fila[11], // dia corte
-                $fila[12], // direccion
-                $fila[13], // telefono1
-                $fila[14], // telefono2
-                $fila[15]  // codigo
+                $fila[1], // nombre
+                $fila[2], // nombre2
+                $fila[3], // apellido
+                $fila[4], // apellido2
+                $fila[5], // identificacion
+                $fila[6], // estado
+                $fila[7], // plan
+                $fila[8], // valor
+                $fila[9], // dia corte
+                $fila[10], // direccion
+                $fila[11], // telefono1
+                $fila[12], // telefono2
+                $fila[14]  // codigo
 
             );
 
-            $c->setIdPlan($fila[1]);
-            $c->setIdBarrio($fila[2]);
+            $c->setNumCliente($fila[13]);
 
             $clientes[] = $c;
 
@@ -160,8 +152,7 @@ public function setCorreo($correo){
 
     /* ================= CONSULTAR CORTES ================= */
 
-    public function consultarCortes()
-    {
+    public function consultarCortes(){
 
         $conexion = new Conexion();
         $dao = new ClienteDAO();
@@ -200,8 +191,7 @@ public function setCorreo($correo){
 
     /* ================= CAMBIAR ESTADO ================= */
 
-    public function cambiarEstado($estado)
-    {
+    public function cambiarEstado($estado){
 
         $conexion = new Conexion();
         $dao = new ClienteDAO();
@@ -220,8 +210,7 @@ public function setCorreo($correo){
 
     /* ================= CREAR ================= */
 
-    public function crear()
-    {
+    public function crear(){
 
         $conexion = new Conexion();
         $dao = new ClienteDAO();
@@ -236,8 +225,7 @@ public function setCorreo($correo){
 
     /* ================= ACTUALIZAR ================= */
 
-    public function actualizar()
-    {
+    public function actualizar(){
 
         $conexion = new Conexion();
         $dao = new ClienteDAO();

@@ -14,6 +14,7 @@ $c->setDia_corte($_POST["dia_corte"]);
 $c->setIdEstadoCliente($_POST["id_estado_cliente"]);
 $c->setIdPlan($_POST["id_plan"]);
 $c->setIdBarrio($_POST["id_barrio"]);
+$c->setNumCliente($_POST["num_cliente"]);
 
 $r = $c->actualizar();
 
