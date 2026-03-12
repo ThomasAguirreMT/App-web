@@ -170,7 +170,7 @@ $estado = $estadoObj->consultar();
 
             <div class="modal-content">
 
-                <div class="modal-header bg-warning">
+                <div class="modal-header bg-primary">
 
                     <h5 class="modal-title">
                         Editar Cliente
@@ -222,7 +222,7 @@ $estado = $estadoObj->consultar();
                             <div class="col-md-4">
                                 <label>Estado</label>
 
-                           
+
                                 <select name="id_estado_cliente" id="edit_estado" class="form-control">
 
                                     <?php foreach ($estado as $e) { ?>
@@ -292,7 +292,7 @@ $estado = $estadoObj->consultar();
                             Cancelar
                         </button>
 
-                        <button type="submit" class="btn btn-warning">
+                        <button type="submit" class="btn btn-primary">
                             Guardar cambios
                         </button>
 
