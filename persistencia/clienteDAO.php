@@ -6,7 +6,6 @@ class ClienteDAO
 {
     return "
 SELECT 
-        
     c.id_cliente,
     c.nombre_1,
     c.nombre_2,

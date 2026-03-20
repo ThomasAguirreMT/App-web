@@ -160,6 +160,138 @@ $estado = $estadoObj->consultar();
 
     </div>
 
+    <!-- MODAL CREAR -->
+
+    <div class="text-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearCliente">
+            <i class="fa-solid fa-user-plus"></i> Crear cliente
+        </button>
+    </div>
+    </div>
+
+    <!-- ================= MODAL ================= -->
+    <div class="modal fade" id="modalCrearCliente" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">
+                        <i class="fa fa-user-plus"></i> Creación del Cliente
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form id="formCrearCliente">
+
+                    <!-- OCULTOS -->
+                    <input type="hidden" name="prefijo" id="prefijo">
+                    <input type="hidden" name="red" id="red">
+                    <input type="hidden" name="id_estado_cliente" value="1">
+                    <input type="hidden" name="id_tipo_identificacion" value="1">
+                    <input type="hidden" name="nombre_2">
+                    <input type="hidden" name="apellido_2">
+
+
+                    <div class="modal-body">
+                        <div class="row g-3">
+
+                            <div class="col-md-4">
+                                <label class="form-label">Ciudad</label>
+                                <select name="id_ciudad" id="id_ciudad" class="form-select" required>
+                                    <option value="">Seleccione...</option>
+                                    <?php foreach ($ciudades as $c) { ?>
+                                        <option value="<?= $c[0] ?>"><?= $c[1] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Barrio</label>
+                                <select name="id_barrio" id="id_barrio" class="form-select" required>
+                                    <option value="">Seleccione ciudad primero</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Plan</label>
+                                <select name="id_plan" class="form-select" required>
+                                    <option value="">Seleccione...</option>
+                                    <?php foreach ($planes as $p) { ?>
+                                        <option value="<?= $p[0] ?>">
+                                            <?= $p[1] ?> - $<?= number_format($p[2]) ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" name="nombre_1" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Apellido</label>
+                                <input type="text" name="apellido_1" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Identificación</label>
+                                <input type="text" name="identificacion" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Teléfono</label>
+                                <input type="text" name="telefono_1" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Dirección</label>
+                                <input type="text" name="direccion" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Día Corte</label>
+                                <input type="number" name="dia_corte" class="form-control" min="1" max="31" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Fecha Instalación</label>
+                                <input type="date" name="fecha_instalacion" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Teléfono 2</label>
+                                <input type="text" name="telefono_2" class="form-control">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Correo</label>
+                                <input type="email" name="correo" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Fecha expedición documento</label>
+                                <input type="date" name="fecha_expedicion" class="form-control" required>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-save"></i> Crear
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 
     <!-- MODAL EDITAR -->
@@ -321,6 +453,87 @@ $estado = $estadoObj->consultar();
 
         });
 
+        //CREAR CLIENTE
+        /* CAMBIO DE ESTADO */
+        $(document).on("click", ".cambiarEstado", function(e) {
+            e.preventDefault();
+
+            let btn = $(this);
+            let id = btn.data("id");
+            let estado = btn.data("estado");
+
+            $.post("ajax/cambiarestadocliente.php", {
+                idCliente: id,
+                estado: estado
+            }, function(r) {
+                if (r.ok) {
+                    $("#estado-" + id).html(r.icono);
+                    btn.data("estado", estado == 1 ? 2 : 1);
+                    btn.html(estado == 1 ?
+                        "<i class='fa-regular fa-circle-xmark text-danger fs-3'></i>" :
+                        "<i class='fa-regular fa-circle-check text-success fs-3'></i>"
+                    );
+                } else {
+                    alert("No se pudo cambiar el estado");
+                }
+            }, "json");
+        });
+
+        /* BARRIOS POR CIUDAD + PREFIJO */
+        $("#id_ciudad").on("change", function() {
+
+            let idCiudad = $(this).val();
+            $("#id_barrio").html('<option>Cargando...</option>');
+
+            $.post("ajax/buscarBarrios.php", {
+                id_ciudad: idCiudad
+            }, function(data) {
+
+                let html = '<option value="">Seleccione...</option>';
+
+                data.forEach(b => {
+                    html += `<option value="${b[0]}" data-prefijo="${b[2]}" data-red="${b[3]}">${b[1]}</option>`;
+                });
+
+                $("#id_barrio").html(html);
+            }, "json");
+        });
+
+        /* CARGAR PREFIJO Y RED */
+        $("#id_barrio").on("change", function() {
+            let opt = $(this).find(":selected");
+            $("#prefijo").val(opt.data("prefijo"));
+            $("#red").val(opt.data("red"));
+        });
+
+        /* CREAR CLIENTE */
+        $(document).on("submit", "#formCrearCliente", function(e) {
+            e.preventDefault();
+
+            console.log("SUBMIT OK"); 
+
+            $.ajax({
+                url: "ajax/crearcliente.php",
+                type: "POST",
+                dataType: "json",
+                data: $(this).serialize(),
+                success: function(r) {
+                    console.log(r);
+
+                    if (r.ok) {
+                        alert("Cliente creado correctamente");
+                        location.reload();
+                    } else {
+                        alert(r.error);
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText);
+                    alert("Error AJAX al crear cliente");
+                }
+            });
+        });
+
 
         /* CARGAR DATOS MODAL */
 
@@ -350,7 +563,7 @@ $estado = $estadoObj->consultar();
 
             e.preventDefault();
 
-            console.log($(this).serialize()); // 👈 para ver si envía datos
+            console.log($(this).serialize());
 
             $.ajax({
 
@@ -361,7 +574,7 @@ $estado = $estadoObj->consultar();
 
                 success: function(r) {
 
-                    console.log(r); // 👈 ver respuesta
+                    console.log(r);
 
                     if (r.ok) {
 
@@ -378,7 +591,7 @@ $estado = $estadoObj->consultar();
 
                 error: function(xhr) {
 
-                    console.log(xhr.responseText); // 👈 aquí verás el error PHP
+                    console.log(xhr.responseText);
                     alert("Error en AJAX");
 
                 }
@@ -440,6 +653,7 @@ $estado = $estadoObj->consultar();
 
         });
     </script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
