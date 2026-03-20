@@ -188,8 +188,7 @@ $estado = $estadoObj->consultar();
                     <input type="hidden" name="red" id="red">
                     <input type="hidden" name="id_estado_cliente" value="1">
                     <input type="hidden" name="id_tipo_identificacion" value="1">
-                    <input type="hidden" name="nombre_2">
-                    <input type="hidden" name="apellido_2">
+
 
 
                     <div class="modal-body">
@@ -229,9 +228,26 @@ $estado = $estadoObj->consultar();
                                 <input type="text" name="nombre_1" class="form-control" required>
                             </div>
 
+
+                            <div class="col-md-3">
+                                <label class="form-label">Nombre_2</label>
+                                <input type="text" name="nombre_2" class="form-control" required>
+                            </div>
+
                             <div class="col-md-3">
                                 <label class="form-label">Apellido</label>
                                 <input type="text" name="apellido_1" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Apellido_2</label>
+                                <input type="text" name="apellido_2" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">TipoIdentficacion</label>
+                                <input type="number" name="id_tipo_identificacion" class="form-control" required>
+
+
                             </div>
 
                             <div class="col-md-3">
@@ -239,9 +255,14 @@ $estado = $estadoObj->consultar();
                                 <input type="text" name="identificacion" class="form-control" required>
                             </div>
 
+
                             <div class="col-md-3">
                                 <label class="form-label">Teléfono</label>
                                 <input type="text" name="telefono_1" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Teléfono 2</label>
+                                <input type="text" name="telefono_2" class="form-control">
                             </div>
 
                             <div class="col-md-6">
@@ -259,10 +280,7 @@ $estado = $estadoObj->consultar();
                                 <input type="date" name="fecha_instalacion" class="form-control" required>
                             </div>
 
-                            <div class="col-md-4">
-                                <label class="form-label">Teléfono 2</label>
-                                <input type="text" name="telefono_2" class="form-control">
-                            </div>
+
 
                             <div class="col-md-4">
                                 <label class="form-label">Correo</label>
@@ -510,7 +528,7 @@ $estado = $estadoObj->consultar();
         $(document).on("submit", "#formCrearCliente", function(e) {
             e.preventDefault();
 
-            console.log("SUBMIT OK"); 
+            console.log("SUBMIT OK");
 
             $.ajax({
                 url: "ajax/crearcliente.php",

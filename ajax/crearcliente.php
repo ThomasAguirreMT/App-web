@@ -8,8 +8,8 @@ try {
 
     $cliente = new Cliente();
     $cliente->setIdEstadoCliente($_POST['id_estado_cliente'] ?? 1);
-    $cliente->setNombre2($_POST['nombre_2'] ?? null);
-    $cliente->setApellido2($_POST['apellido_2'] ?? null);
+    $cliente->setNombre2($_POST['nombre_2']);
+    $cliente->setApellido2($_POST['apellido_2']);
 
     $cliente->setIdCiudad($_POST['id_ciudad']);
     $cliente->setIdBarrio($_POST['id_barrio']);
