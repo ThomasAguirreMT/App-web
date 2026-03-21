@@ -52,11 +52,10 @@ class Conexion
         return $this->resultado;
     }
 
-    public function registro()
-    {
-        return $this->resultado->fetch_row();
-    }
-
+public function registro()
+{
+    return mysqli_fetch_assoc($this->resultado);
+}
     public function filas()
     {
         return $this->resultado->num_rows;

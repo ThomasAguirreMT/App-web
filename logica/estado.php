@@ -5,13 +5,13 @@ require_once("persistencia/estadoDAO.php");
 class Estado
 {
     private $id;
-    private $descripcion;
+    private $estado_cliente;
     private $color;
 
     public function __construct($id_estado_cliente = 0, $estado_cliente = "", $color = "")
     {
         $this->id = $id_estado_cliente;
-        $this->descripcion = $estado_cliente;
+        $this->estado_cliente = $estado_cliente;
         $this->color = $color;
     }
 
@@ -20,16 +20,31 @@ class Estado
         return $this->id;
     }
 
-    public function __getdescripcion()
+    public function __getEstado_cliente()
     {
-        return $this->descripcion;
+        return $this->estado_cliente;
     }
 
     public function __getcolor()
     {
         return $this->color;
     }
+    
+    public function __setid_estado_cliente($v)
+    {
+        $this->id = $v;
+    }
+    public function __setEstado_cliente($v)
+    {
+        $this->estado_cliente = $v;
+    }
+    public function __setcolor($v)
+    {
+        $this->color = $v;
+    }
 
+     /* ================= CONSULTAR ESTADOS ================= */
+     
     public function consultar()
     {
         $conexion = new Conexion();

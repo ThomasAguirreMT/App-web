@@ -87,6 +87,7 @@ $tipo_identificacion = $tipo->consultar();
                     <th>Dirección</th>
                     <th>Teléfono 1</th>
                     <th>Teléfono 2</th>
+                    <th>estado</th>
                     <th>Editar</th>
                 </tr>
 
@@ -132,6 +133,8 @@ $tipo_identificacion = $tipo->consultar();
                         <td><?= $c->getDireccion() ?></td>
                         <td><?= $c->getTelefono1() ?></td>
                         <td><?= $c->getTelefono2() ?></td>
+                        <td><?= $c->getEstadoCliente() ?></td>
+
 
                         <td>
 

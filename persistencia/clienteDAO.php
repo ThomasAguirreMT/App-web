@@ -6,21 +6,23 @@ class ClienteDAO
     {
         return "
 SELECT 
-    c.id_cliente,
-    c.nombre_1,
-    c.nombre_2,
-    c.apellido_1,
-    c.apellido_2,
-    c.identificacion,
-    ec.id_estado_cliente,
-    CONCAT(p.cantidad,'M ',p.obs) AS PLAN1,
-    p.valor,
-    c.dia_corte,
-    c.direccion,
-    c.telefono_1,
-    c.telefono_2,
-    c.num_cliente,
-    CONCAT(ba.red, ba.prefijo, '0', c.num_cliente) AS codigo
+    
+c.id_cliente,
+c.nombre_1,
+c.nombre_2,
+c.apellido_1,
+c.apellido_2,
+c.identificacion,
+ec.id_estado_cliente,
+CONCAT(p.cantidad,'M ',p.obs) AS PLAN1,
+p.valor,
+c.dia_corte,
+c.direccion,
+ec.estado_cliente,
+c.telefono_1,
+c.telefono_2,
+CONCAT(ba.red,ba.prefijo,'0',c.num_cliente) AS codigo
+    
 
 FROM cliente c
 JOIN barrio ba ON ba.id_barrio = c.id_barrio
