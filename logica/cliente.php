@@ -31,6 +31,7 @@ class Cliente
     private $fecha_expedicion;
     private $fecha_instalacion;
     private $id_usuario;
+    private $estado_cliente;
 
 
     public function __construct(
@@ -55,7 +56,8 @@ class Cliente
         $id_tipo_identificacion = "",
         $fecha_expedicion = "",
         $fecha_instalacion = "",
-            $id_usuario = 0
+        $id_usuario = 0,
+        $estado_cliente = ""
     ) {
 
         $this->id_cliente = $id_cliente;
@@ -80,10 +82,8 @@ class Cliente
         $this->fecha_expedicion = $fecha_expedicion;
         $this->fecha_instalacion = $fecha_instalacion;
         $this->id_usuario = $id_usuario;
-        
-
-
-    }
+        $this->estado_cliente = $estado_cliente;
+        }
 
     /* ================= GETTERS ================= */
 
@@ -157,36 +157,14 @@ class Cliente
     {
         return $this->id_barrio;
     }
-    public function getCorreo()
-    {
-        return $this->correo;
-    }
-    public function getidciudad()
-    {
-        return $this->id_ciudad;
-    }
-    public function getRed()
-    {
-        return $this->prefijo;
-    }
-
-    public function getIdTipoIdentificacion()
-    {
-        return $this->id_tipo_identificacion;
-    }
-    public function getExpDoc()
-    {
-        return $this->fecha_expedicion;
-    }
-    public function getFechaInstalacion()
-    {
-        return $this->fecha_instalacion;
-    }
-
-    public function getIdUsuario()
-    {
-        return $this->id_usuario;
-    }
+    public function getCorreo(){return $this->correo;}
+    public function getidciudad(){return $this->id_ciudad;}
+    public function getRed(){return $this->prefijo;}
+    public function getIdTipoIdentificacion(){return $this->id_tipo_identificacion;}
+    public function getExpDoc(){return $this->fecha_expedicion;}
+    public function getFechaInstalacion(){return $this->fecha_instalacion;}
+    public function getIdUsuario(){return $this->id_usuario;}
+    public function getEstadoCliente(){return $this->estado_cliente;}
     /* ================= SETTERS ================= */
 
     public function setIdCliente($v)
@@ -275,6 +253,11 @@ class Cliente
     public function setIdUsuario($v)
     {
         $this->id_usuario = $v;
+    }
+
+    public function setEstadoCliente($v)
+    {
+        $this->estado_cliente = $v;
     }
     /* ================= CONSULTAR CLIENTES ================= */
 

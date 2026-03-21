@@ -76,57 +76,36 @@ require_once(__DIR__ . "/../menuAdministrador.php");
             <tbody>
                 <?php foreach ($clientes as $c) { ?>
                     <tr>
+
                         <td><?= $c->getNombre1() ?></td>
                         <td><?= $c->getApellido1() ?></td>
                         <td><?= $c->getIdentificacion() ?></td>
                         <td><?= $c->getValor() ?></td>
 
-
-
-                        <!-- ESTADO -->
-                        <td class="text-center" id="estado-<?= $c->getId_Cliente() ?>">
+                        <td class="text-center">
                             <?= $c->getIdEstadoCliente() == 1
                                 ? "<i class='fa-solid fa-check text-success fs-4'></i>"
                                 : "<i class='fa-solid fa-x text-danger fs-4'></i>" ?>
                         </td>
 
-                        <!-- CÓDIGO -->
-                        <td><?= $c->getCodigo() ?></td>
-
-
-                        <!-- ACCIONES -->
-                        <td class="text-center">
-                            <?php if ($c->getIdEstadoCliente() == 1) { ?>
-                                <a href="#"
-                                    class="cambiarEstado"
-                                    data-id="<?= $c->getId_Cliente() ?>"
-                                    data-estado="2"
-                                    title="Deshabilitar">
-                                    <i class="fa-regular fa-circle-xmark text-danger fs-3"></i>
-                                </a>
-                            <?php } else { ?>
-                                <a href="#"
-                                    class="cambiarEstado"
-                                    data-id="<?= $c->getId_Cliente() ?>"
-                                    data-estado="1"
-                                    title="Habilitar">
-                                    <i class="fa-regular fa-circle-check text-success fs-3"></i>
-                                </a>
-                            <?php } ?>
-                        </td>
                         <td><?= $c->getDia_corte() ?></td>
+
+                        <td class="text-center">
+                            <a href="#"
+                                class="cambiarEstado"
+                                data-id="<?= $c->getId_Cliente() ?>"
+                                data-estado="<?= $c->getIdEstadoCliente() == 1 ? 2 : 1 ?>">
+                                <i class="fa-solid fa-repeat"></i>
+                            </a>
+                        </td>
+
                         <td><?= $c->getDireccion() ?></td>
 
-
-
+                        <td><?= $c->getCodigo() ?></td>
 
                     </tr>
-
                 <?php } ?>
-
             </tbody>
-
-
         </table>
     </div>
 

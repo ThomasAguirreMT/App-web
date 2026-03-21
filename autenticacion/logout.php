@@ -4,7 +4,4 @@ session_destroy();
 
 header("Location: login.php");
 exit;
-
-
-echo "Logged out successfully.";
 ?>

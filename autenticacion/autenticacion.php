@@ -39,6 +39,6 @@ if ($conexion->filas() == 1) {
 
 } else {
     $conexion->cerrar();
-    header("Location: ../presentacion/login.php?error=1");
+    header("Location: ../autenticacion/logout.php");
     exit;
 }

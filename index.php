@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
+
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: autenticacion/login.php");
     exit;
@@ -18,6 +20,8 @@ require_once("logica/estado.php");
 
 
 include("presentacion/menuAdministrador.php");
+require_once("logica/tipo_identificacion.php");
+
 
 /* ===== DATOS ===== */
 
@@ -36,6 +40,8 @@ $barrios = $barrioObj->consultar();
 $estadoObj = new Estado();
 $estado = $estadoObj->consultar();
 
+$tipo = new TipoIdentificacion();
+$tipo_identificacion = $tipo->consultar();
 ?>
 
 <!DOCTYPE html>
@@ -187,7 +193,6 @@ $estado = $estadoObj->consultar();
                     <input type="hidden" name="prefijo" id="prefijo">
                     <input type="hidden" name="red" id="red">
                     <input type="hidden" name="id_estado_cliente" value="1">
-                    <input type="hidden" name="id_tipo_identificacion" value="1">
 
 
 
@@ -242,14 +247,19 @@ $estado = $estadoObj->consultar();
                                 <label class="form-label">Apellido_2</label>
                                 <input type="text" name="apellido_2" class="form-control" required>
                             </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Tipo identificación</label>
+                                <select name="id_tipo_identificacion" class="form-select" required>
+                                    <option value="">Seleccione...</option>
 
-                            <div class="col-md-3">
-                                <label class="form-label">TipoIdentficacion</label>
-                                <input type="number" name="id_tipo_identificacion" class="form-control" required>
+                                    <?php foreach ($tipo_identificacion as $t) { ?>
+                                        <option value="<?= $t[0] ?>">
+                                            <?= $t[1] ?>
+                                        </option>
+                                    <?php } ?>
 
-
+                                </select>
                             </div>
-
                             <div class="col-md-3">
                                 <label class="form-label">Identificación</label>
                                 <input type="text" name="identificacion" class="form-control" required>

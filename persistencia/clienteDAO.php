@@ -3,8 +3,8 @@ require_once(__DIR__ . "/conexion.php");
 class ClienteDAO
 {
     public function consultar()
-{
-    return "
+    {
+        return "
 SELECT 
     c.id_cliente,
     c.nombre_1,
@@ -32,7 +32,7 @@ WHERE c.id_estado_cliente IN
 11,12,13,14,15,16,17,18,19,20,
 21,22,23,24,25,26,27,28,29,30)
 ";
-}    
+    }
 
     public function consultarCortes()
     {
@@ -87,9 +87,9 @@ WHERE c.id_estado_cliente IN
             WHERE id_cliente = $idCliente";
     }
 
-public function insertar($c)
-{
-    return "
+    public function insertar($c)
+    {
+        return "
     INSERT INTO cliente (
         id_ciudad,
         id_barrio,
@@ -138,13 +138,13 @@ public function insertar($c)
     FROM cliente
     WHERE id_barrio = {$c->getIdBarrio()}
     ";
-}
+    }
 
 
 
-public function actualizar($c)
-{
-    return "
+    public function actualizar($c)
+    {
+        return "
  UPDATE cliente SET
     nombre_1 = '{$c->getNombre1()}',
     nombre_2 = '{$c->getNombre2()}',
@@ -161,6 +161,5 @@ public function actualizar($c)
     id_barrio = {$c->getIdBarrio()}
 WHERE id_cliente = {$c->getId_Cliente()}
     ";
-}
-
+    }
 }

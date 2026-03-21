@@ -58,9 +58,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
   <div class="container-fluid">
 
-    <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="dashboard.php">
-      <img src="/img/LogoWeb.png" style="height:40px;">
-    </a>
+  <a href="/web/index.php" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
+    <img src="/web/img/LogoWeb.png" style="height:40px;">
+</a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarGestion">
