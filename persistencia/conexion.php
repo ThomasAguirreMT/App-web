@@ -14,7 +14,7 @@ class Conexion
             "root",
             "",
             "Webmasteer",
-            
+
         );
 
         /*
@@ -52,10 +52,11 @@ class Conexion
         return $this->resultado;
     }
 
-public function registro()
+  public function registro()
 {
     return mysqli_fetch_assoc($this->resultado);
 }
+    
     public function filas()
     {
         return $this->resultado->num_rows;

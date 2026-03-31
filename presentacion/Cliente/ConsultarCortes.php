@@ -10,6 +10,7 @@ require_once("../../logica/cliente.php");
 
 $cliente = new Cliente();
 $clientes = $cliente->consultarCortes();
+
 require_once(__DIR__ . "/../menuAdministrador.php");
 
 
@@ -67,7 +68,8 @@ require_once(__DIR__ . "/../menuAdministrador.php");
                     <th>dia corte</th>
                     <th>Acciones</th>
                     <th>Dirección</th>
-
+                    <th>telefono 1</th>
+                    <th>telefono 2</th>
                     <th>codigo</th>
 
                 </tr>
@@ -100,6 +102,9 @@ require_once(__DIR__ . "/../menuAdministrador.php");
                         </td>
 
                         <td><?= $c->getDireccion() ?></td>
+
+                        <td><?= $c->getTelefono1() ?></td>
+                        <td><?= $c->getTelefono2() ?></td>
 
                         <td><?= $c->getCodigo() ?></td>
 

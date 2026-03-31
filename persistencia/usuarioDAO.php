@@ -11,10 +11,11 @@ class UsuarioDAO {
             FROM usuario_has_profile up
             INNER JOIN usuario u ON u.id_usuario = up.id_usuario
             INNER JOIN perfil p ON p.id_perfil = up.id_perfil
-            WHERE up.usuario_login = '$usuario'
-              AND up.pass_login = '$password'
+            WHERE TRIM(up.usuario_login) = TRIM('$usuario')
+              AND TRIM(up.pass_login) = TRIM('$password')
               AND up.id_estado_usuario = 1
             LIMIT 1
         ";
     }
+
 }

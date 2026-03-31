@@ -34,8 +34,12 @@ class Cliente
     private $estado_cliente;
 
 
-    public function __construct(){}
-
+public function __construct($id_cliente = null)
+{
+    if ($id_cliente != null) {
+        $this->id_cliente = $id_cliente;
+    }
+}
 
     /* ================= GETTERS ================= */
 
@@ -137,6 +141,47 @@ class Cliente
 
         return $clientes;
     }
+
+    
+    public function consultarCortes()
+    {
+
+        $conexion = new Conexion();
+        $dao = new ClienteDAO();
+
+        $conexion->abrir();
+        $conexion->ejecutar($dao->consultarCortes());
+
+        $clientes = [];
+
+        while (($fila = $conexion->registro()) != null) {
+
+            $c = new Cliente();
+
+            $c->setIdCliente($fila["id_cliente"]);
+            $c->setNombre1($fila["nombre_1"]);
+            $c->setNombre2($fila["nombre_2"]);
+            $c->setApellido1($fila["apellido_1"]);
+            $c->setApellido2($fila["apellido_2"]);
+            $c->setIdentificacion($fila["identificacion"]);
+            $c->setIdEstadoCliente($fila["id_estado_cliente"]);
+            $c->setPlan($fila["PLAN1"]);
+            $c->setValor($fila["valor"]);
+            $c->setDia_corte($fila["dia_corte"]);
+            $c->setDireccion($fila["direccion"]);
+            $c->setTelefono1($fila["telefono_1"]);
+            $c->setTelefono2($fila["telefono_2"]);
+            $c->setCodigo($fila["codigo"]);
+            $c->setEstadoCliente($fila["estado_cliente"]);
+
+            $clientes[] = $c;
+        }
+
+        $conexion->cerrar();
+
+        return $clientes;
+    }
+
 
 
     /* ================= CAMBIAR ESTADO ================= */
